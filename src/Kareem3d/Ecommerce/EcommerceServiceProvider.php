@@ -1,8 +1,8 @@
-<?php namespace Kareem3d\Ecommerce;
+<?php namespace Kareem3d\ECommerce;
 
 use Illuminate\Support\ServiceProvider;
 
-class EcommerceServiceProvider extends ServiceProvider {
+class ECommerceServiceProvider extends ServiceProvider {
 
 	/**
 	 * Indicates if loading of the provider is deferred.

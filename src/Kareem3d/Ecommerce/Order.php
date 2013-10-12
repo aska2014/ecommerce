@@ -1,4 +1,4 @@
-<?php namespace Kareem3d\Ecommerce;
+<?php namespace Kareem3d\ECommerce;
 
 use Kareem3d\Eloquent\Model;
 use Kareem3d\Membership\UserInfo;
@@ -80,6 +80,14 @@ class Order extends Model {
     public function countProducts()
     {
         return $this->products()->count();
+    }
+
+    /**
+     * @param \Kareem3d\Membership\UserInfo $userInfo
+     */
+    public function setUserInfo( UserInfo $userInfo )
+    {
+        $this->userInfo()->associate($userInfo);
     }
 
     /**

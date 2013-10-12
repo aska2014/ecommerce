@@ -1,4 +1,4 @@
-<?php namespace Kareem3d\Ecommerce;
+<?php namespace Kareem3d\ECommerce;
 
 use Kareem3d\Eloquent\Model;
 
@@ -13,6 +13,11 @@ class Category extends Model {
      * @var array
      */
     protected $guarded = array();
+
+    /**
+     * @var array
+     */
+    protected static $dontDuplicate = array('name');
 
     /**
      * @return bool

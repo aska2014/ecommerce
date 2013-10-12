@@ -1,4 +1,4 @@
-<?php namespace Kareem3d\Ecommerce;
+<?php namespace Kareem3d\ECommerce;
 
 use Kareem3d\Eloquent\Model;
 
