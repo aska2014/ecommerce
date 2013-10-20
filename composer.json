@@ -18,7 +18,7 @@
             "src/migrations"
         ],
         "psr-0": {
-            "Kareem3d\\ECommerce": "src/"
+            "Kareem3d\\Ecommerce": "src/"
         }
     },
     "minimum-stability": "dev"
