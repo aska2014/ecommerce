@@ -1,5 +1,6 @@
-<?php namespace Kareem3d\ECommerce;
+<?php namespace Kareem3d\Ecommerce;
 
+use Illuminate\Support\Facades\App;
 use Kareem3d\Eloquent\Model;
 
 class Stock extends Model {
@@ -19,6 +20,6 @@ class Stock extends Model {
      */
     public function products()
     {
-        return $this->hasMany(Product::getClass());
+        return $this->hasMany(App::make('Kareem3d\Ecommerce\Product')->getClass());
     }
 }

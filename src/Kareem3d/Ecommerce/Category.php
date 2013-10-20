@@ -1,5 +1,6 @@
-<?php namespace Kareem3d\ECommerce;
+<?php namespace Kareem3d\Ecommerce;
 
+use Illuminate\Support\Facades\App;
 use Kareem3d\Eloquent\Model;
 
 class Category extends Model {
@@ -17,7 +18,19 @@ class Category extends Model {
     /**
      * @var array
      */
-    protected static $dontDuplicate = array('name');
+    protected $rules = array(
+        'title' => 'required'
+    );
+
+    /**
+     * @var string
+     */
+    protected static $specsTable = 'category_specs';
+
+    /**
+     * @var array
+     */
+    protected static $specs = array('title');
 
     /**
      * @return bool
@@ -48,7 +61,7 @@ class Category extends Model {
      */
     public function parent()
     {
-        return $this->belongsTo(static::getClass());
+        return $this->belongsTo(App::make('Kareem3d\Ecommerce\Category')->getClass());
     }
 
     /**
@@ -56,7 +69,7 @@ class Category extends Model {
      */
     public function children()
     {
-        return $this->hasMany(static::getClass());
+        return $this->hasMany(App::make('Kareem3d\Ecommerce\Category')->getClass());
     }
 
     /**
@@ -64,6 +77,14 @@ class Category extends Model {
      */
     public function products()
     {
-        return $this->hasMany(Product::getClass());
+        return $this->hasMany(App::make('Kareem3d\Ecommerce\Product')->getClass());
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function __toString()
+    {
+        return $this->title;
     }
 }

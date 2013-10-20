@@ -1,5 +1,6 @@
-<?php namespace Kareem3d\ECommerce;
+<?php namespace Kareem3d\Ecommerce;
 
+use Illuminate\Support\Facades\App;
 use Kareem3d\Eloquent\Model;
 use Kareem3d\Membership\UserInfo;
 
@@ -88,6 +89,8 @@ class Order extends Model {
     public function setUserInfo( UserInfo $userInfo )
     {
         $this->userInfo()->associate($userInfo);
+
+        if(! $this->exists) $this->save();
     }
 
     /**
@@ -95,7 +98,7 @@ class Order extends Model {
      */
     public function products()
     {
-        return $this->belongsToMany(Product::getClass(), 'product_order')->withPivot('qty');
+        return $this->belongsToMany(App::make('Kareem3d\Ecommerce\Product')->getClass(), 'product_order')->withPivot('qty');
     }
 
     /**
@@ -103,6 +106,6 @@ class Order extends Model {
      */
     public function userInfo()
     {
-        return $this->belongsTo(UserInfo::getClass(), 'user_info_id');
+        return $this->belongsTo(App::make('Kareem3d\Membership\UserInfo')->getClass(), 'user_info_id');
     }
 }
