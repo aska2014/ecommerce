@@ -65,13 +65,26 @@ class Product extends Model {
     {
         if($value instanceof Price) return $value;
 
+        if($value === $this->price->value())
+        {
+            $value = 0;
+        }
+
         return new Price($value, $this->currency);
     }
 
     /**
-     * @return mixed
+     * @return Price
      */
-    public function getActualPrice()
+    public function getBeforePriceAttribute()
+    {
+        return $this->hasOfferPrice() ? $this->price : $this->offer_price;
+    }
+
+    /**
+     * @return Price
+     */
+    public function getActualPriceAttribute()
     {
         return $this->hasOfferPrice() ? $this->offer_price : $this->price;
     }

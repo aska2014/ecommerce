@@ -23,6 +23,11 @@ class Category extends Model {
     );
 
     /**
+     * @var array
+     */
+    protected static $dontDuplicate = array('title');
+
+    /**
      * @var string
      */
     protected static $specsTable = 'category_specs';
@@ -31,6 +36,15 @@ class Category extends Model {
      * @var array
      */
     protected static $specs = array('title');
+
+    /**
+     * @param $title
+     * @return mixed
+     */
+    public static function getByTitle( $title )
+    {
+        return static::allSpecsQuery()->where('title', $title)->first();
+    }
 
     /**
      * @return bool
