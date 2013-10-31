@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class CreateProductOrderTable extends Migration {
+class CreateProductStockTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,18 +12,18 @@ class CreateProductOrderTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('ka_product_order', function(Blueprint $table)
-		{
-			$table->increments('id');
+        Schema::create('ka_product_stock', function(Blueprint $table)
+        {
+            $table->increments('id');
 
             $table->integer('quantity');
 
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('ka_products')->onDelete('CASCADE');
 
-            $table->integer('order_id')->unsigned();
-            $table->foreign('order_id')->references('id')->on('ka_orders')->onDelete('CASCADE');
-		});
+            $table->integer('stock_id')->unsigned();
+            $table->foreign('stock_id')->references('id')->on('ka_stocks')->onDelete('CASCADE');
+        });
 	}
 
 	/**
@@ -33,7 +33,7 @@ class CreateProductOrderTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('ka_product_order');
+        Schema::drop('ka_product_stock');
 	}
 
 }

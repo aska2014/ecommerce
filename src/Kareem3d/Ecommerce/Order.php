@@ -9,7 +9,7 @@ class Order extends Model {
     /**
      * @var string
      */
-    protected $table = 'orders';
+    protected $table = 'ka_orders';
 
     /**
      * @var array
@@ -17,7 +17,7 @@ class Order extends Model {
     protected $guarded = array();
 
     /**
-     * @return float
+     * @return float|int
      */
     public function getTotal()
     {
@@ -25,14 +25,14 @@ class Order extends Model {
 
         foreach($this->products as $product)
         {
-            $total +=  ((int)$product->qty) * ((float)$product->getActualPrice());
+            $total +=  ((int)$product->quantity) * ((float)$product->actualPrice);
         }
 
         return $total;
     }
 
     /**
-     * @return float
+     * @return float|int
      */
     public function getTotalWithoutOffer()
     {
@@ -40,12 +40,12 @@ class Order extends Model {
 
         foreach($this->products as $product)
         {
-            $total +=  ((int)$product->qty) * ((float)$product->price);
+            $total +=  ((int)$product->quantity) * ((float)$product->beforePrice);
         }
 
         return $total;
     }
-
+5
     /**
      * @param Product $product
      * @param $qty
@@ -63,7 +63,7 @@ class Order extends Model {
      */
     public function addProduct( Product $product, $qty )
     {
-        $this->products()->attach($product, array('qty' => $qty));
+        $this->products()->attach($product, array('quantity' => $qty));
     }
 
     /**
@@ -98,7 +98,7 @@ class Order extends Model {
      */
     public function products()
     {
-        return $this->belongsToMany(App::make('Kareem3d\Ecommerce\Product')->getClass(), 'product_order')->withPivot('qty');
+        return $this->belongsToMany(App::make('Kareem3d\Ecommerce\Product')->getClass(), 'product_order')->withPivot('quantity');
     }
 
     /**
@@ -106,6 +106,6 @@ class Order extends Model {
      */
     public function userInfo()
     {
-        return $this->belongsTo(App::make('Kareem3d\Membership\UserInfo')->getClass(), 'user_info_id');
+        return $this->belongsTo(App::make('Kareem3d\Membership\UserInfo')->getClass());
     }
 }

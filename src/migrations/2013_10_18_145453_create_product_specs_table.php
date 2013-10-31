@@ -12,7 +12,7 @@ class CreateProductSpecsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('product_specs', function(Blueprint $table)
+		Schema::create('ka_product_specs', function(Blueprint $table)
 		{
 			$table->increments('id');
 
@@ -21,7 +21,7 @@ class CreateProductSpecsTable extends Migration {
             $table->string('language');
 
             $table->integer('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('CASCADE');
+            $table->foreign('product_id')->references('id')->on('ka_products')->onDelete('CASCADE');
 		});
 	}
 
@@ -32,7 +32,7 @@ class CreateProductSpecsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('product_specs');
+		Schema::drop('ka_product_specs');
 	}
 
 }

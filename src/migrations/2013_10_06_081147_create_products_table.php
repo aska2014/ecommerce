@@ -12,7 +12,7 @@ class CreateProductsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('products', function(Blueprint $table)
+		Schema::create('ka_products', function(Blueprint $table)
 		{
 			$table->increments('id');
 
@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration {
             $table->float('offer_price')->nullable();
 
             $table->integer('category_id')->unsigned()->nullable();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('CASCADE');
+            $table->foreign('category_id')->references('id')->on('ka_categories')->onDelete('CASCADE');
 
 			$table->timestamps();
 		});
@@ -33,7 +33,7 @@ class CreateProductsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('products');
+		Schema::drop('ka_products');
 	}
 
 }

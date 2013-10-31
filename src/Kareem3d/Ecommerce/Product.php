@@ -18,12 +18,7 @@ class Product extends Model {
     /**
      * @var string
      */
-    protected $table = 'products';
-
-    /**
-     * @var array
-     */
-    protected $guarded = array();
+    protected $table = 'ka_products';
 
     /**
      * @var array
@@ -31,13 +26,13 @@ class Product extends Model {
     protected $rules = array(
         'price' => 'required|numeric',
         'offer_price' => 'numeric',
-        'category_id' => 'required|exists:categories,id'
+        'category_id' => 'required|exists:ka_categories,id'
     );
 
     /**
      * @var string
      */
-    protected static $specsTable = 'product_specs';
+    protected static $specsTable = 'ka_product_specs';
 
     /**
      * @var array
@@ -65,6 +60,7 @@ class Product extends Model {
     {
         if($value instanceof Price) return $value;
 
+        // If price is equal to offer price then return price object with zero value
         if($value === $this->price->value())
         {
             $value = 0;
@@ -108,9 +104,9 @@ class Product extends Model {
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function stock()
+    public function stocks()
     {
-        return $this->belongsTo(Stock::getClass());
+        return $this->belongsToMany(App::make('Kareem3d\Ecommerce\Stock')->getClass(), 'ka_product_stock');
     }
 
     /**
@@ -118,7 +114,7 @@ class Product extends Model {
      */
     public function orders()
     {
-        return $this->belongsToMany(App::make('Kareem3d\Ecommerce\Order')->getClass(), 'product_order');
+        return $this->belongsToMany(App::make('Kareem3d\Ecommerce\Order')->getClass(), 'ka_product_order');
     }
 
     /**

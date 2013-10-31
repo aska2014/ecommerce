@@ -8,12 +8,7 @@ class Category extends Model {
     /**
      * @var string
      */
-    protected $table = 'categories';
-
-    /**
-     * @var array
-     */
-    protected $guarded = array();
+    protected $table = 'ka_categories';
 
     /**
      * @var array
@@ -30,7 +25,7 @@ class Category extends Model {
     /**
      * @var string
      */
-    protected static $specsTable = 'category_specs';
+    protected static $specsTable = 'ka_category_specs';
 
     /**
      * @var array

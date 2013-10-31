@@ -12,9 +12,12 @@ class CreateCategoriesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('categories', function(Blueprint $table)
+		Schema::create('ka_categories', function(Blueprint $table)
 		{
 			$table->increments('id');
+
+            $table->integer('category_id')->nullable()->unsigned();
+            $table->foreign('category_id')->references('id')->on('ka_categories')->onDelete('CASCADE');
 
 			$table->timestamps();
 		});
@@ -27,7 +30,7 @@ class CreateCategoriesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('categories');
+		Schema::drop('ka_categories');
 	}
 
 }

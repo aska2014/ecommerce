@@ -12,16 +12,15 @@ class CreateCategorySpecsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('category_specs', function(Blueprint $table)
+		Schema::create('ka_category_specs', function(Blueprint $table)
 		{
 			$table->increments('id');
 
             $table->string('title');
-
             $table->string('language');
 
             $table->integer('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('CASCADE');
+            $table->foreign('category_id')->references('id')->on('ka_categories')->onDelete('CASCADE');
 		});
 	}
 
@@ -32,7 +31,6 @@ class CreateCategorySpecsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('category_specs');
+		Schema::drop('ka_category_specs');
 	}
-
 }

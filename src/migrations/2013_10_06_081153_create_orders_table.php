@@ -12,12 +12,12 @@ class CreateOrdersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('orders', function(Blueprint $table)
+		Schema::create('ka_orders', function(Blueprint $table)
 		{
 			$table->increments('id');
 
             $table->integer('user_info_id')->unsigned();
-            $table->foreign('user_info_id')->references('id')->on('users_info')->onDelete('CASCADE');
+            $table->foreign('user_info_id')->references('id')->on('ka_user_info')->onDelete('CASCADE');
 
 			$table->timestamps();
 		});
@@ -30,7 +30,7 @@ class CreateOrdersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('orders');
+		Schema::drop('ka_orders');
 	}
 
 }

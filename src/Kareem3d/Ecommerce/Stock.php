@@ -11,15 +11,10 @@ class Stock extends Model {
     protected $table = 'stocks';
 
     /**
-     * @var array
-     */
-    protected $guarded = array();
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function products()
     {
-        return $this->hasMany(App::make('Kareem3d\Ecommerce\Product')->getClass());
+        return $this->belongsToMany(App::make('Kareem3d\Ecommerce\Product')->getClass(), 'stock_product');
     }
 }

@@ -12,9 +12,12 @@ class CreateStocksTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('stocks', function(Blueprint $table)
+		Schema::create('ka_stocks', function(Blueprint $table)
 		{
 			$table->increments('id');
+
+            $table->string('name');
+
 			$table->timestamps();
 		});
 	}
@@ -26,7 +29,7 @@ class CreateStocksTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('stocks');
+		Schema::drop('ka_stocks');
 	}
 
 }
