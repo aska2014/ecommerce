@@ -45,7 +45,6 @@ class Order extends Model {
 
         return $total;
     }
-5
     /**
      * @param Product $product
      * @param $qty
